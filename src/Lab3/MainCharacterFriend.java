@@ -17,6 +17,6 @@ public class MainCharacterFriend extends Human implements Likeable {
     }
 
     public String likeDoingSth(Entertainment entertainment) {
-        return Name +  " любит " + entertainment.getDescription();
+        return Name + " любит " + entertainment.getDescription();
     }
 }

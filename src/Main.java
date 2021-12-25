@@ -12,7 +12,7 @@ public class Main {
         System.out.println(Dunno.sing(new Song("Чика", "Артур Пирожков")));
         Riddle riddle1 = new Riddle("У него два горба, В них и пища и вода", "Верблюд");
         System.out.println(Dunno.makeARiddle(DunnoRiddles.RIDDLE4));
-        System.out.println(Dunno.solveARiddle(riddle1,"Конь"));
+        System.out.println(Dunno.solveARiddle(riddle1, "Конь"));
         Folklore proverb1 = new Folklore(DunnoFolklore.PROVERB3.getDescription());
         System.out.println(Dunno.tryToRememberSth(proverb1));
         LifeCase jump = new LifeCase("прыжок с парашютом", "Италия", 2014, 8, 8, DunnoEmotions.AFRAID);

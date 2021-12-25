@@ -11,6 +11,7 @@ public enum DunnoEmotions implements Described {
     GRIEVE("загоревал");
 
     private final String description;
+
     DunnoEmotions(String description) {
         this.description = description;
     }

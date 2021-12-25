@@ -3,12 +3,12 @@ package Lab3;
 public class Riddle extends Knowledge implements Answerable {
     private final String answer;
 
-    public Riddle(String description,String answer){
+    public Riddle(String description, String answer) {
         super(description);
         this.answer = answer;
     }
 
-    public boolean tryCheckAnswer(String answer){
+    public boolean tryCheckAnswer(String answer) {
         return this.answer.equals(answer);
     }
 

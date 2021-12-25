@@ -5,7 +5,7 @@ public class Bridge {
     private final String material;
     private final Double width;
 
-    public Bridge(Double height, Double width, BridgeMaterials material){
+    public Bridge(Double height, Double width, BridgeMaterials material) {
         this.material = material.getMaterial();
         this.height = height;
         this.width = width;

@@ -6,11 +6,12 @@ public enum DunnoFolklore implements Described {
     PROVERB3("Яков лаком, съел кошку с маком");
 
     private final String description;
-    DunnoFolklore(String description){
+
+    DunnoFolklore(String description) {
         this.description = description;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 }

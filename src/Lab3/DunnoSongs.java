@@ -9,6 +9,7 @@ public enum DunnoSongs {
 
     private final String songName;
     private final String author;
+
     DunnoSongs(String songName, String author) {
         this.songName = songName;
         this.author = author;
@@ -19,6 +20,6 @@ public enum DunnoSongs {
     }
 
     public String getAuthor() {
-        return  this.author;
+        return this.author;
     }
 }

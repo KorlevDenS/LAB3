@@ -46,22 +46,25 @@ public class MainCharacter extends Human implements Thinkable, Reactive, Riddles
     }
 
     public String tryToRememberSth(Object obj) {
-        if (obj instanceof Knowledge f) {
+        if (obj instanceof Knowledge) {
+            Knowledge f = (Knowledge) obj;
             if (this.know(f)) {
                 if (Math.random() > 0.2)
-                return Name + " вспомнил: " + f.getDescription();
+                    return Name + " вспомнил: " + f.getDescription();
                 else return Name + " знает это, но не может вспомнить";
             }
         }
-        if (obj instanceof MainCharacterFriend friend)
-        return Name + " вспомнил своего друга по имени " + friend.Name;
+        if (obj instanceof MainCharacterFriend) {
+            MainCharacterFriend friend = (MainCharacterFriend) obj;
+            return Name + " вспомнил своего друга по имени " + friend.Name;
+        }
         return Name + " никогда такого и не знал";
     }
 
 
     public String sitUnderBridge(Bridge bridge) {
         if (bridge.getHeight() > Height)
-        return Name + " сел под мост ";
+            return Name + " сел под мост ";
         else return Name + " не поместился ";
     }
 
@@ -81,7 +84,7 @@ public class MainCharacter extends Human implements Thinkable, Reactive, Riddles
 
     public String sing(Song song) {
         if (this.know(song))
-        return  Name + " спел песню " + song.getSongName() + ", автор которой: " + song.getAuthor();
+            return Name + " спел песню " + song.getSongName() + ", автор которой: " + song.getAuthor();
         else return Name + " не знает такую песню";
     }
 }

@@ -8,7 +8,8 @@ public enum DunnoRiddles implements Described, Answerable {
 
     private final String description;
     private final String answer;
-    DunnoRiddles(String description, String answer){
+
+    DunnoRiddles(String description, String answer) {
         this.description = description;
         this.answer = answer;
     }

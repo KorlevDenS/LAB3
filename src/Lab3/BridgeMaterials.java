@@ -6,6 +6,7 @@ public enum BridgeMaterials {
     STONE("камень");
 
     final private String material;
+
     BridgeMaterials(String material) {
         this.material = material;
     }

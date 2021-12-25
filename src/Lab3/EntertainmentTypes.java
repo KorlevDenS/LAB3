@@ -1,6 +1,6 @@
 package Lab3;
 
-public enum EntertainmentTypes  implements Described {
+public enum EntertainmentTypes implements Described {
     SING("петь"),
     READ("читать"),
     DREAM("мечтать"),
@@ -8,6 +8,7 @@ public enum EntertainmentTypes  implements Described {
     WALK("гулять");
 
     private final String description;
+
     EntertainmentTypes(String description) {
         this.description = description;
     }
