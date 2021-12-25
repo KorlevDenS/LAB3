@@ -1,10 +1,17 @@
 package Lab3;
 
-public abstract class Human implements Sitable{
+import java.util.ArrayList;
+
+public abstract class Human {
 
     public String Name;
+    public Double Height;
+    public ArrayList<Knowledge> knowledge = new ArrayList<>();
 
-    public void sit(VariousObjects obj){}
+    public Human(String Name, Double Height) {
+        this.Name = Name;
+        this.Height = Height;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -16,16 +23,18 @@ public abstract class Human implements Sitable{
         if (this.getClass() != obj.getClass())
             return false;
         Human otherObj = (Human) obj;
-        return Name.equals(otherObj.Name);
+        return Name.equals(otherObj.Name) && Height.equals(otherObj.Height);
     }
 
     public int hashCode() {
-        return this.Name.hashCode();
+        return this.Name.hashCode()
+                + this.Height.hashCode();
     }
 
     public String toString() {
         return getClass().getName()
                 + "[name=" + Name
+                + ";height=" + Height
                 + "]";
     }
 }

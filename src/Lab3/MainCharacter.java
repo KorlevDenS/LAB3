@@ -1,63 +1,87 @@
 package Lab3;
 
-public class MainCharacter extends Human implements Thinkable, Singable {
+public class MainCharacter extends Human implements Thinkable, Reactive, Riddles, Singable {
+    public double thinkingPeriod;
+    public String currentMood;
 
-    public  MainCharacter(String Name) {
-        this.Name = Name;
+    public MainCharacter(String Name, Double Height, double thinkingPeriod) {
+        super(Name, Height);
+        this.thinkingPeriod = thinkingPeriod;
+        this.currentMood = DunnoEmotions.ORDINARY.getDescription();
+        for (DunnoSongs song : DunnoSongs.values())
+            knowledge.add(new Song(song.getSongName(), song.getAuthor()));
+        for (DunnoRiddles riddle : DunnoRiddles.values())
+            knowledge.add(new Riddle(riddle.getDescription(), riddle.getAnswer()));
+        for (DunnoFolklore saying : DunnoFolklore.values())
+            knowledge.add(new Folklore(saying.getDescription()));
     }
 
-    public void startRemembering(VariousObjects obj) {
-        System.out.println(Name + " принялся вспоминать " + obj.getValue());
+    public boolean know(Knowledge obj) {
+        return (knowledge.contains(obj));
     }
 
-    public void rememberProverb(ProverbsSayings saying) {
-        System.out.println(Name + " вспомнил пословицу " + saying.getValue());
+    public void reactToSituation(LifeCase situation) {
+        currentMood = situation.getEmotion();
+        System.out.println(Name + " " + currentMood);
     }
 
-    public void remember() {
-        System.out.println(Name + " вспомнил:");
+    public String addKnowledge(Knowledge obj) {
+        knowledge.add(obj);
+        return Name + " теперь знает: " + obj.getDescription();
     }
 
-    public void remember(Character guy) {
-        System.out.println(Name + " вспомнил о друге по имени " + guy.Name);
+    public String imagine(String description, String place, int year, int month, int day, DunnoEmotions emotion) {
+        LifeCase imagineCase = new LifeCase(description, place, year, month, day, emotion);
+        return Name + " вообразил: " + imagineCase.getDescription();
     }
 
-    public void makeWish(VariousObjects obj){
-        System.out.println(Name + " загадал " + obj.getValue() + know());
+    public String strainMind() {
+        if (thinkingPeriod > 1) {
+            thinkingPeriod /= 2;
+            System.out.println(Name + " теперь думает в 2 раза быстрее");
+        }
+        int index = (int) (Math.random() * EntertainmentTypes.values().length);
+        Entertainment entertainment = new Entertainment(EntertainmentTypes.values()[index]);
+        return Name + " придумал развлечение: " + entertainment.getDescription();
     }
 
-    public void solve(VariousObjects obj) {
-        System.out.println(Name + " разгадал " + obj.getValue());
+    public String tryToRememberSth(Object obj) {
+        if (obj instanceof Knowledge f) {
+            if (this.know(f)) {
+                if (Math.random() > 0.2)
+                return Name + " вспомнил: " + f.getDescription();
+                else return Name + " знает это, но не может вспомнить";
+            }
+        }
+        if (obj instanceof MainCharacterFriend friend)
+        return Name + " вспомнил своего друга по имени " + friend.Name;
+        return Name + " никогда такого и не знал";
     }
 
-    public void strainMind(VariousObjects obj, Doings verb) {
-        System.out.println(Name + " напряг свои умственные способности, чтобы "
-                + verb.getValue() + " " + obj.getValue());
+
+    public String sitUnderBridge(Bridge bridge) {
+        if (bridge.getHeight() > Height)
+        return Name + " сел под мост ";
+        else return Name + " не поместился ";
     }
 
-    public String know(){
-        return " которые знал ";
+    public String makeARiddle(DunnoRiddles riddle) {
+        Riddle rid = new Riddle(riddle.getDescription(), riddle.getAnswer());
+        return Name + " загадал загадку: " + rid.getDescription();
     }
 
-    public void sing(VariousObjects obj) {
-        System.out.println(Name + " спел " + obj.getValue() + know());
+    public String solveARiddle(Riddle riddle, String answer) {
+        if (riddle.tryCheckAnswer(answer)) {
+            return Name + " разгадал загадку \"" + riddle.getDescription() + "\""
+                    + " Ответ: " + riddle.getAnswer();
+        } else {
+            return Name + " не знает ответа на эту загадку ";
+        }
     }
 
-    public void imagine() {
-        System.out.println(Name + " воображал:");
+    public String sing(Song song) {
+        if (this.know(song))
+        return  Name + " спел песню " + song.getSongName() + ", автор которой: " + song.getAuthor();
+        else return Name + " не знает такую песню";
     }
-
-    public String grieve() {
-        return  " горевал, что ";
-    }
-
-    public void cannotHelp(Doings verb) {
-        System.out.println(Name + grieve() + "ничем не может " + verb.getValue());
-    }
-
-    @Override
-    public void sit(VariousObjects obj) {
-        System.out.println(Name + " в одиночестве сидел под" + obj.getValue());
-    }
-
 }

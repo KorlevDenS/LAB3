@@ -1,5 +1,5 @@
 package Lab3;
 
 public interface Likeable {
-    void like(Doings verb);
+    String likeDoingSth(Entertainment entertainment);
 }
